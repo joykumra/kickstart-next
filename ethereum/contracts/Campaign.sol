@@ -50,9 +50,14 @@ contract Campaign {
 
     // DONATION OF MONEY BY DONATORS
     function contribute() public payable {
-        require(msg.value > minimumContribution);
-        approvers[msg.sender] = true;
-        approversCount++;
+        require(msg.value > minimumContribution); // MONEY SENT MUST BE GREATER THAN MIN CONTRIBUTION
+        bool isExisted = approvers[msg.sender]; // INITIAL VALUE = FALSE
+
+        // IF PERSON IS CONTRBUTING FIRST TIME
+        if (!isExisted) {
+            approvers[msg.sender] = true; // DEFAULT VALUE IS FALSE IF ADDRESS IS NOT DEFINED BEFORE
+            approversCount++;
+        } 
     }
 
     // REQUEST MADE BY MANAGER

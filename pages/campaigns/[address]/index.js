@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { Fragment } from "react";
-import { Card } from "semantic-ui-react";
-import Campaign from "../../ethereum/campaign";
-import web3 from "../../ethereum/web3";
+import { Button, Card, Grid } from "semantic-ui-react";
+import ContributionForm from "../../../components/ContributionForm";
+import Campaign from "../../../ethereum/campaign";
+import web3 from "../../../ethereum/web3";
 
 const CampaignShow = (props) => {
   const renderCards = () => {
@@ -57,7 +59,21 @@ const CampaignShow = (props) => {
   return (
     <Fragment>
       <h3>Campaign Show</h3>
-      {renderCards()}
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={10}>{renderCards()}</Grid.Column>
+          <Grid.Column width={6}>
+            <ContributionForm address={props.address} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Link href={`/campaigns/${props.address}/requests`}>
+              <Button primary>View Requests</Button>
+            </Link>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </Fragment>
   );
 };
@@ -77,6 +93,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       campaignSummary,
+      address: context.params.address,
     },
   };
 }

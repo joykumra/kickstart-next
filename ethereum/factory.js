@@ -27,7 +27,7 @@ const abi = [
   },
 ];
 
-const address = "0x89f8DE887C06b29e5A9e9B2B5FC566aa52bcFd1c";
+const address = "0xb7a581d71Bd2EE8084dD49cB9b4D2c6daC6Ba671";
 
 // Local copy of Contract
 const factory = new web3.eth.Contract(abi, address);

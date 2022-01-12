@@ -36,6 +36,7 @@ const CampaignIndex = (props) => {
   );
 };
 
+// SSR
 export async function getServerSideProps() {
   const campaigns = await factory.methods.getDeployedContracts().call();
 
