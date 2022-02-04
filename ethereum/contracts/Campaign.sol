@@ -29,6 +29,7 @@ contract Campaign {
 
     address public manager; // WHO CREATED REQ
     uint public minimumContribution; // MINIMUM MONEY TO DONATE
+    
     mapping(address => bool) public approvers; // DONATERS
     uint public approversCount; // TOTAL DONATERS
 
@@ -89,6 +90,7 @@ contract Campaign {
     function finalizeRequest(uint index) public restricted {
         Request storage req = requests[index];
 
+        require(req.approvalCount >= (approversCount / 2));
         require(!req.complete);
 
         payable(req.recipient).transfer(req.value);

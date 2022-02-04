@@ -25,7 +25,7 @@ const NewCampaign = () => {
       const accounts = await web3.eth.getAccounts();
 
       await factory.methods.createContract(contribution).send({
-        from: accounts[0],
+        from: accounts[1],
       });
       // REDIRECT
       router.push("/");
